@@ -12,8 +12,15 @@
 #' @export
 pluralize_gift <- function(gift){
 
-gift <- gift %>%
-  str_replace("y$", "ie") %>% paste("s", sep = "")
+if(str_detect(gift, "oo")){
+  gift <- gift %>%
+    str_replace("oo", "ee")
+}
+else{
+  gift <- gift %>%
+    str_replace("y$", "ie") %>%
+    paste("s", sep = "")
+}
 
 return(gift)
 
