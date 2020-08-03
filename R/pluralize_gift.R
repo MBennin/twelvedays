@@ -13,7 +13,7 @@
 pluralize_gift <- function(gift){
 
 gift <- gift %>%
-  str_replace()
+  str_replace("y$", "ie") %>% paste("s", sep = "")
 
 return(gift)
 
