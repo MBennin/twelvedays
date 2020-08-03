@@ -13,11 +13,31 @@
 #' @import purrr
 #'
 #' @export
-sing_day <- function(dataset, line, phrase_col){
+sing_day <- function(dataset, line, day_col, phrase_col){
 
   phrases <- dataset %>% pull({{phrase_col}})
 
-  #????
+  days <- dataset %>% pull({{day_col}})
 
+  output <- "On the"
 
+  output <- paste(output, days[line])
+
+  output <- paste(output, "day of Christmas, my true love sent to me,")
+
+  if(line == 1){
+    output <- paste(output, phrases[1], sep = '\n')
+  }
+  else{
+
+    lines <- paste(phrases[line:2], collapse='\n')
+
+    output <- paste(output, lines, sep = "\n")
+
+    output <- paste(output, "and", sep = '\n')
+
+    output <- paste(output, phrases[1], sep = ' ')
+  }
+
+  return(output)
 }
